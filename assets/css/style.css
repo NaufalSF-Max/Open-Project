@@ -12,8 +12,9 @@ html, body {
   position: fixed;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  background-color: #27445D;
+  padding: 20px;
+  background: rgba(39, 68, 93, 0.20);
+  backdrop-filter: blur(100px); 
   width: 100%;
   z-index: 999999;
 }
@@ -27,10 +28,16 @@ html, body {
 .logo span {
   font-size: 32px;
   font-weight: 700;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 25px;
+  letter-spacing: -1.28px;
 }
 
 .navbar .menu-item {
-  display: flex;
+  position: relative;
+  display: block;
 }
 
 .nav-links {
@@ -46,10 +53,15 @@ html, body {
 
 .nav-links a {
   text-decoration: none;
+  display: block;
   color: #F8E8FF;
-  font-size: 22px;
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
   position: relative;
-  transition: color 0.3s ease; 
+  transition: color 0.3s ease;
+  width: auto;
 }
 
 .nav-links a::after {
@@ -84,17 +96,21 @@ html, body {
   justify-content: center;
   flex-direction: column;
   width: 100%;
+  height: 100%;
 }
 
 .hero-container {
-  margin-top: 4em;
   display: flex;
   width: 100%;
   padding: 0;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
   text-align: center;
   flex-direction: row;
+  position: relative;
+  margin-bottom: -19vw;
+  margin-top: -3vw;
+  transition: transform 0.1s easeout;
 }
 
 .hero-container .cloud-left { 
@@ -104,15 +120,20 @@ html, body {
 
 .cloud-left img {
   width: 100%;
+  padding-top: 50px;
 }
 
 .hero-container .cloud-right {
   flex: 1;
   mix-blend-mode: multiply;
+  position: relative;
+  inset: -2vw 0 0 0;
 }
 
 .cloud-right img {
-  width: 100%;
+  width: 180%;
+  padding-top: 50px;
+  clip-path: inset(0 44% 0 0);
 }
 
 .hero-container .hero-text button{
@@ -135,10 +156,11 @@ html, body {
 .hero-text {
   width: 100%;
   flex: 2;
+  margin-top: -100px;
 }
 
 .hero h1 {
-  font-size: 64px;
+  font-size: clamp(2.5rem, 7vw, 10rem);
   font-weight: bold;
   color: white;
   margin-bottom: 10px;
@@ -165,12 +187,12 @@ html, body {
   overflow: hidden;
   padding: 0;
   margin: 0;
+  margin-bottom: -5px;
   z-index: 2;
-  padding: -80px;
 }
 
 .hero .hero-city img {
-  height: 0%;
+  height: auto;
   width: 100%;
 }
 
@@ -178,7 +200,7 @@ html, body {
 
 .gtk {
   display: flex;
-  background: var(--light-blue-homepage, linear-gradient(180deg, #90BAFF 0%, #458CFF 100%));
+  background: var(--light-blue-homepage, linear-gradient(180deg, #90BAFF 0%, #458CFF 50%, #98DED9 100%));
   align-items: center;
   text-align: center;
   justify-content: center;
@@ -194,20 +216,40 @@ html, body {
   display: flex;
   width: 100%;
   padding: 0;
+  margin: 0;
   justify-content: center;
   align-items: center;
   text-align: center;
   flex-direction: row;
+  margin-top: -100px;
 }
 
 .gtk-container .cloud-left { 
   flex: 1;
-  width: 0%;
+  mix-blend-mode: multiply;
+}
+
+.gtk-container .cloud-left img {
+  width: 180%;
+  height: 180%;
+  padding-top: 50px;
+  clip-path: inset(0 0 0 50%);
+  transform: translateX(-50%);
 }
 
 .gtk-container .cloud-right {
   flex: 1;
-  width: 10%;
+  mix-blend-mode: multiply;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 95vh;
+}
+
+.gtk-container .cloud-right img {
+  width: 100%;
+  clip-path: inset(0 30% 0 0);;
+  transform: translateX(30%);
 }
 
 .gtk-text {
@@ -216,15 +258,25 @@ html, body {
 }
 
 .gtk h1 {
-  font-size: 3rem;
+  font-size: clamp(2rem, 4vw, 3.3rem); /* Adjust the font size based on viewport width */
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
   color: white;
+  transform: translateY(100px); /* Start below the GTK city */
+  transition: transform 0.5s ease; /* Smooth transition */
 }
 
 .gtk h3 {
-  font-size: 1rem;
+  font-size: clamp(0.5rem, 2vw, 1rem); /* Adjust the font size based on viewport width */
   color: white;
+  font-style: normal;
   font-weight: 500;
   line-height: 24px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px); /* Slightly off-screen */
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .gtk .highlight {
@@ -244,18 +296,21 @@ html, body {
   margin: 0;
   z-index: 2;
   mix-blend-mode: multiply;
+  inset: -20vh 0 0 0;
 }
 
 .gtk .gtk-city img {
   height: 0%;
-  width: 100%;
+  width: 120%;
+  clip-path: inset(0 6% 10% 6%);
+  transform: translateX(-7%);
 }
 
 /* Theme */
 
 .Theme {
   display: flex;
-  background-image: url('../img/Desktop\ -\ 11.png');
+  background-image: url(../img/Desktop\ -\ 11.png);
   background-size: cover;
   background-position: center;
   align-items: center;
@@ -275,10 +330,24 @@ html, body {
   text-align: center;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .Theme-container .theme-text {
-  max-width: 60%;
+  max-width: 100%;
+}
+
+.theme-text h1 {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: #004136;
+  margin-bottom: 20px;
+}
+
+.Theme-container .theme-details {
+  max-width: 55%;
   text-align: center;
   justify-content: center;
   display: flex;
@@ -287,23 +356,16 @@ html, body {
   justify-content: center;
 }
 
-.theme-text h1 {
-  font-size: 36px;
-  color: #2B2D2F;
-  margin-bottom: 20px;
-}
-
-.theme-text p {
-  font-size: 18px;
-  color: #333;
-  line-height: 1.6;
-  margin-bottom: 15px;
-  text-align: center;
+.theme-details p {
+  color: #004136;
+  font-size: clamp(0.5rem, 2vw, 1rem);
+  font-style: normal;
+  font-weight: 500;
 }
 
 /* Documentation */
 .Documentation {
-  background: linear-gradient(to bottom, #98DED9, #C7FFD8);
+  background: linear-gradient(to bottom, #C7FFD8 , #98DED9);
   padding: 0;
   margin: 0;
   border: none;
@@ -394,7 +456,7 @@ html, body {
 
 /* Timeline Registration */
 .Registration {
-  background: linear-gradient(to bottom, #C7FFD8, #98DED9);
+  background: linear-gradient(180deg, #98DED9 0%, #C7FFD8 100%);
   padding: 0;
   margin: 0;
   border: none;
@@ -520,7 +582,8 @@ html, body {
 
 .benefit {
   display: flex;
-  background: var(--light-blue-homepage, linear-gradient(180deg, #90BAFF 0%, #458CFF 100%));
+  background: linear-gradient(180deg, #C6FED8 0%, #84CFFB 100%);
+  flex-shrink: 0;
   align-items: center;
   text-align: center;
   justify-content: center;
@@ -544,12 +607,30 @@ html, body {
 
 .benefit-container .cloud-left { 
   flex: 1;
-  width: 0%;
+  mix-blend-mode: multiply;
+  position: relative;
+  height: 60vh;
+}
+
+.benefit-container .cloud-left img{ 
+  flex: 1;
+  width: 180%;
+  height: auto;
+  clip-path: inset(0 0 0 50%);
+  transform: translateX(-50%);
+  position: relative;
+  bottom: 60%;
 }
 
 .benefit-container .cloud-right {
   flex: 1;
-  width: 10%;
+  mix-blend-mode: multiply;
+}
+
+.benefit-container .cloud-right img{
+  width: 90%;
+  clip-path: inset(0 27% 0 0);
+  transform: translateX(27%);
 }
 
 .benefit-text {
@@ -558,22 +639,27 @@ html, body {
 }
 
 .benefit h1 {
-  font-size: 3rem;
-  color: white;
+  color: #004136;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -2.56px;
 }
 
 .benefit h3 {
-  font-size: 1rem;
-  color: white;
+  color: #004136;
+  text-align: center;
+  font-family: "Plus Jakarta Sans";
+  font-size: clamp(0.5rem, 4vw, 1.1rem);
+  font-style: normal;
   font-weight: 500;
-  line-height: 24px;
 }
 
 .benefit-city {
   width: 100%;
-  position: relative;
-  height: auto;
   overflow: hidden;
+  position: relative;
   padding: 0;
   margin: 0;
   z-index: 2;
@@ -581,8 +667,12 @@ html, body {
 }
 
 .benefit .benefit-city img {
+  object-fit: cover;
+  display: block;
   height: 0%;
-  width: 100%;
+  width: 120%;
+  clip-path: inset(0 6% 15% 6%);
+  transform: translateY(0) translateX(-7%);
 }
 
 /* ================= Section FAQ ================= */
@@ -593,11 +683,9 @@ html, body {
   position: relative;
   padding: 0;
   margin: 0;
+  height: 60vw;
 }
 
-.faq-heading {
-  padding: 50px;
-}
 
 .faq-heading h2 {
   font-size: 3.8rem;
@@ -632,7 +720,7 @@ html, body {
   max-width: 900px;
   margin: auto;
   align-items: start; 
-  gap: 35px;
+  gap: 50px;
 }
  
 .button {
@@ -739,7 +827,7 @@ details[open] summary::after {
   overflow: hidden;
   text-align: left;
   transform: translateY(-5px);
-  transition: height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+  transition: height 0.5s ease-in-out, opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
   padding: 0 15px;
   color: black;
   will-change: height, opacity, transform;
@@ -753,103 +841,118 @@ details[open] .faq-answer {
   padding: 10px 1px;
 }
 
-/* Footer */
-.footer {
+/* =============== section Footer ================ */
+footer {
   background-color: #2577FF;
-  color: #f0f0f0;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.footer-logo {
-  flex: 1;
-  text-align: center;
-}
-
-.footer-title {
-  font-size: 3rem;
-  font-weight: 600;
   color: white;
-  margin-bottom: 1rem;
+
 }
 
-.footer-links {
-  flex: 2;
+.footer-container {
   display: flex;
-  justify-content: space-between;
+  position: relative;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 0 auto;
 }
 
-.footer-column {
-  flex: 1;
-  padding: 1rem;
+.footer-text{
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  gap: 140px;
 }
 
-.footer-heading {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+.footer-section h4 {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  transform: translateX(40px);  
 }
 
-.footer-column ul {
+.footer-section ul li {
   list-style: none;
-  padding: 0;
+  margin: 15px 0;
 }
 
-.footer-column ul li {
-  margin-bottom: 1rem;
-}
-
-.footer-column ul li a {
-  color: #f0f0f0;
+.footer-section ul li a {
+  color: white;
   text-decoration: none;
-  font-size: 1rem;
   transition: color 0.3s ease;
+  font-size: 1.0em;
 }
 
-.footer-column ul li a:hover {
-  color: #d7a2d2;
-  transform: scale(1.05);
+.footer-section ul li a:hover {
+  color: #b3b3b3;
+}
+
+.logo-section {
+  text-align: center;
+  max-width: 170px;
+  margin-left: 40px;
+}
+
+.logo-section h3 {
+  font-size: 3em;
+  letter-spacing: 1px;
+  display: inline-block;
+  text-align: left;
 }
 
 .footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2577FF;
+  padding: 10px 20px;
+}
+
+.footer-line {
+  width: 100%;
+  height: 5px;
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 10px;
+}
+
+.footer-bottom p {
+  margin: 5px 0;
+  color: white;
+  font-size: 18px;
   text-align: center;
-  margin-top: 2rem;
 }
 
-.footer-text {
-  font-size: 1rem;
+.footer-logo-container {
+  display: flex;
+  align-items: center;
 }
 
-.footer-logo img {
-  width: 40px;
-  height: 40px;
-  margin-right: 0.5rem;
+.footer-logo {
+  max-width: 50px;
+  margin: 10px 10px 10px 0;
+}
+
+.footer-logo-container p {
+  margin: 0;
+  color: white;
+  font-size: 18px;
 }
 
 .social-icons {
   display: flex;
   justify-content: center;
-  margin-top: 5px;
+  margin-top: 3px;
 }
 
 .social-icons a {
   color: white;
   margin: 0 5px;
-  font-size: 20px;
+  font-size: 25px;
   transition: color 0.3s ease;
   background-color: #ffffff0c;
   border-radius: 50%;
-  line-height: 2px;
+  line-height: 1;
   padding: 5px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 }
