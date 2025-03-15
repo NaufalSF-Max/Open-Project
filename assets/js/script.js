@@ -1,50 +1,92 @@
-// Tambahkan event listener untuk hamburger menu
-document.addEventListener("DOMContentLoaded", function () {
-  const hamburger = document.getElementById("hamburger");
-  const menu = document.querySelector(".menu");
+(function ($) {
+  "use strict";
 
-  hamburger.addEventListener("click", function () {
-    menu.classList.toggle("show-menu"); // Toggle class "show-menu" untuk menampilkan atau menyembunyikan
+  function handlePreloader() {
+    if ($(".preloader").length) {
+      $("body").addClass("page-loaded");
+      $(".preloader").fadeOut(300, function () {
+        let elementsToAnimate = [
+          { selector: ".cloud-left img", animation: "fadeInLeft 1s ease-out forwards" },
+          { selector: ".cloud-right img", animation: "fadeInRight 1s ease-out forwards" },
+          { selector: ".hero-city img", animation: "fadeInUp 1s ease-out 0.5s forwards" },
+          { selector: ".hero-text h1", animation: "fadeInUp 1s ease-out 0.7s forwards" },
+          { selector: ".hero-text button", animation: "fadeInUp 1s ease-out 0.9s forwards" },
+          { selector: ".gtk h1", animation: "fadeInUp 1s ease-out 0.9s forwards" },
+          { selector: ".gtk-city img", animation: "fadeInUp 1s ease-out 0.9s forwards" },
+        ];
+
+        elementsToAnimate.forEach((item) => {
+          let element = document.querySelector(item.selector);
+          if (element) {
+            element.style.animation = item.animation;
+          }
+        });
+
+        // Pastikan hero button tetap mengikuti logika scroll setelah animasi awal
+        setTimeout(() => {
+          checkHeroButtonVisibility();
+        }, 1000); // Beri jeda agar animasi masuk selesai dulu
+      });
+    }
+  }
+
+  function checkHeroButtonVisibility() {
+    const scrollPosition = window.scrollY;
+    const heroButton = document.querySelector(".hero-text button");
+
+    if (scrollPosition > 10) {
+      heroButton.style.opacity = "0";
+      heroButton.style.pointerEvents = "none";
+    } else {
+      heroButton.style.opacity = "1";
+      heroButton.style.pointerEvents = "auto";
+    }
+  }
+
+  $(window).on("load", function () {
+    handlePreloader();
   });
-});
 
+  // Event listener untuk hamburger menu
+  document.addEventListener("DOMContentLoaded", function () {
+    const hamburger = document.getElementById("hamburger");
+    const menu = document.querySelector(".menu");
 
-/* ================= Section Parallax Hero ================= */
-window.addEventListener("scroll", function() {
-    const scrollPosition = window.scrollY; // Get the current scroll position
-  
-    // Get the cloud and text elements
+    hamburger.addEventListener("click", function () {
+      menu.classList.toggle("show-menu");
+    });
+  });
+
+  /* ================= Section Parallax Hero ================= */
+  window.addEventListener("scroll", function () {
+    const scrollPosition = window.scrollY;
     const cloudLeft = document.querySelector(".cloud-left img");
     const cloudRight = document.querySelector(".cloud-right img");
     const heroText = document.querySelector(".hero-text");
     const heroButton = document.querySelector(".hero-text button");
-  
-    // Move the clouds diagonally as you scroll
-    cloudLeft.style.transform = `translateX(-${scrollPosition * 0.2}px) translateY(${scrollPosition * 0.1}px)`;
-    cloudRight.style.transform = `translateX(${scrollPosition * 0.2}px) translateY(${scrollPosition * 0.1}px)`;
-  
-    // Move the "Open Project" text downward
+
+    if (cloudLeft && cloudRight) {
+      cloudLeft.style.transform = `translateX(-${scrollPosition * 0.2}px) translateY(${scrollPosition * 0.1}px)`;
+      cloudRight.style.transform = `translateX(${scrollPosition * 0.2}px) translateY(${scrollPosition * 0.1}px)`;
+    }
+
     heroText.style.transform = `translateY(${scrollPosition * 0.5}px)`;
 
-    // Shrink hero text gradually after scrolling past a threshold
-    const shrinkStart = 100; // Start shrinking after scrolling 100px
-    const maxShrink = 300;   // Fully shrink at 300px
+    // Shrink hero text gradually
+    const shrinkStart = 100;
+    const maxShrink = 300;
 
     if (scrollPosition > shrinkStart) {
-        let scaleFactor = 1 - ((scrollPosition - shrinkStart) / (maxShrink - shrinkStart)) * 0.3;
-        scaleFactor = Math.max(scaleFactor, 0.7); // Minimum scale is 0.7
-        heroText.style.transform += ` scale(${scaleFactor})`;
+      let scaleFactor = 1 - ((scrollPosition - shrinkStart) / (maxShrink - shrinkStart)) * 0.3;
+      scaleFactor = Math.max(scaleFactor, 0.7);
+      heroText.style.transform += ` scale(${scaleFactor})`;
     }
-  
-    // Hide the button as you scroll
-    if (scrollPosition > 10) {
-      heroButton.style.opacity = "0"; // Hide the button
-      heroButton.style.pointerEvents = "none"; // Ensure the button is not clickable
-    } else {
-      heroButton.style.opacity = "1"; // Show the button
-      heroButton.style.pointerEvents = "auto"; // Make the button clickable again
-    }
-  });  
+
+    // Panggil fungsi untuk menyembunyikan hero button saat scroll
+    checkHeroButtonVisibility();
+  });
+
+})(window.jQuery);
 
   window.addEventListener("scroll", function () {
     const scrollPosition = window.scrollY; // Get the current scroll position
