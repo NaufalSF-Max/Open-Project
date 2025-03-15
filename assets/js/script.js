@@ -1,3 +1,14 @@
+// Tambahkan event listener untuk hamburger menu
+document.addEventListener("DOMContentLoaded", function () {
+  const hamburger = document.getElementById("hamburger");
+  const menu = document.querySelector(".menu");
+
+  hamburger.addEventListener("click", function () {
+    menu.classList.toggle("show-menu"); // Toggle class "show-menu" untuk menampilkan atau menyembunyikan
+  });
+});
+
+
 /* ================= Section Parallax Hero ================= */
 window.addEventListener("scroll", function() {
     const scrollPosition = window.scrollY; // Get the current scroll position
@@ -13,7 +24,7 @@ window.addEventListener("scroll", function() {
     cloudRight.style.transform = `translateX(${scrollPosition * 0.2}px) translateY(${scrollPosition * 0.1}px)`;
   
     // Move the "Open Project" text downward
-    heroText.style.transform = `translateY(${scrollPosition * 0.4}px)`;
+    heroText.style.transform = `translateY(${scrollPosition * 0.5}px)`;
   
     // Hide the button as you scroll
     if (scrollPosition > 10) {
