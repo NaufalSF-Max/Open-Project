@@ -25,6 +25,16 @@ window.addEventListener("scroll", function() {
   
     // Move the "Open Project" text downward
     heroText.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+
+    // Shrink hero text gradually after scrolling past a threshold
+    const shrinkStart = 100; // Start shrinking after scrolling 100px
+    const maxShrink = 300;   // Fully shrink at 300px
+
+    if (scrollPosition > shrinkStart) {
+        let scaleFactor = 1 - ((scrollPosition - shrinkStart) / (maxShrink - shrinkStart)) * 0.3;
+        scaleFactor = Math.max(scaleFactor, 0.7); // Minimum scale is 0.7
+        heroText.style.transform += ` scale(${scaleFactor})`;
+    }
   
     // Hide the button as you scroll
     if (scrollPosition > 10) {

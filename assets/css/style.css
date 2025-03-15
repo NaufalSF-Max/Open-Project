@@ -35,12 +35,13 @@ header .nav1{
   align-items: center;
 }
 
-.nav-section2 h2{
+.nav-section2 a{
   margin:0;
   font-size: clamp(1.5rem, 4vw, 2rem);
   font-style: normal;
   font-weight: 700;
   color: #FFF5E9;
+  text-decoration: none;
 }
 
 .menu{
@@ -61,13 +62,30 @@ header .nav1{
   list-style: none;
 }
 
-.menu ul li a{
-    text-decoration: none;
-    color:#fff;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+.menu ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.menu ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0; /* Mulai dari sisi kiri */
+  bottom: 0;
+  width: 0%; /* Garis awalnya tidak terlihat */
+  height: 2px;
+  background-color: #fff; /* Warna garis */
+  transition: width 0.3s ease-in-out; /* Animasi smooth */
+}
+
+.menu ul li a:hover::after {
+  width: 100%; /* Garis akan memanjang ke kanan */
 }
 
 #hamburger{
@@ -365,7 +383,7 @@ header .nav1{
 
 .theme-details p {
   color: #004136;
-  font-size: clamp(0.5rem, 2vw, 1rem);
+  font-size: clamp(0.8rem, 2vw, 1rem);
   font-style: normal;
   font-weight: 500;
 }
@@ -657,7 +675,7 @@ header .nav1{
   color: #004136;
   text-align: center;
   font-family: "Plus Jakarta Sans";
-  font-size: clamp(0.5rem, 4vw, 1.1rem);
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
   font-style: normal;
   font-weight: 500;
 }
@@ -851,7 +869,6 @@ details[open] .faq-answer {
 footer {
   background-color: #2577FF;
   color: white;
-
 }
 
 .footer-container {

@@ -26,14 +26,11 @@
     .footer-text{
       display: flex;
       position: relative;
-      gap: 60px;
+      gap: 40px;
       padding: 20px 20px 0 20px;
     }
     .logo-section{
       margin-left: 0px;
-    }
-    .section-3{
-      margin-top: -20px; 
     }
 }
 
@@ -46,11 +43,7 @@
   .faq-heading {
       font-size: clamp(3em, 3vw, 4em);
   }
-  .faq-wrapper {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Lebih fleksibel */
-      gap: 20px;
-      max-width: 90%;
-  } 
+
   summary {
      font-size: 1rem;
   }
@@ -77,8 +70,8 @@
     justify-content: left;
   }
   
-  .nav-section2 h2 {
-    margin-left: 40%;
+  .nav-section2 {
+    transform: translateX(40%);
   }
   
   .menu {
@@ -145,6 +138,9 @@
     }
 
     /* ================= Section FAQ ================= */
+    .faq-container {
+      height: 105vh;
+    }
     .faq-wrapper {
       grid-template-columns: 1fr;
       max-width: 100%;
@@ -181,13 +177,21 @@
   .logo-section{
     margin-left: 0px;
   }
-  .section-3{
-    margin-top: -40px; 
-  }
-
-  }
+}
   
   @media(max-width: 440px){
+    .hero-container {
+      margin-top: 17vw;
+    }
+
+    .gtk-container {
+      margin-top: -15vw;
+    }
+
+    .gtk-city {
+      transform: translateY(20%);
+    }
+
     .wrapper .row{
       margin: 10px 0;
     }
@@ -196,5 +200,12 @@
       width: 80%;
       padding-left: 60px;
       padding-right: 25px;
+    }
+
+    .faq-container {
+      height: 140vh;
+    }
+    .section-3{
+      margin-top: -40px; 
     }
   }
